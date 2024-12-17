@@ -1,65 +1,105 @@
-/* Общие стили */
+/* Подключаем кастомный шрифт BOX */
+@font-face {
+    font-family: 'BOX';
+    src: url('/fonts/as.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Стили для body */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background: linear-gradient(to bottom, #000, #fff); /* Фон с градиентом сверху вниз */
-    height: 100%;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    font-family: sans-serif;
+    background: linear-gradient(to bottom, #fff, #333); /* Фон с градиентом */
+    transition: background 1s ease; /* Плавное изменение фона */
 }
 
-/* Заголовок с градиентом снизу вверх */
+/* Заголовок */
 #main-header {
-    font-size: 6rem; /* Увеличиваем размер текста */
-    font-weight: bold;
-    text-align: center;
-    background: linear-gradient(to top, black, white); /* Градиент снизу вверх */
-    color: transparent; /* Делаем текст прозрачным */
-    -webkit-background-clip: text; /* Для отображения градиента только на тексте */
-    background-clip: text;
-    padding: 20px;
-    position: fixed; /* Фиксируем заголовок */
-    top: 0;
+    position: fixed;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    transition: opacity 0.3s ease-out; /* Плавное исчезновение */
-}
-
-/* Контейнер для контента */
-.main-content {
-    padding: 50px;
+    transform: translate(-50%, -50%); /* Центрируем по вертикали и горизонтали */
     text-align: center;
-    background-color: #fff;
-    width: 100%;
-    margin-top: 100px; /* Чтобы контент не был скрыт за фиксированным заголовком */
+    padding: 20px;
+    background: transparent;
+    z-index: 10;
+    transition: all 1s ease-in-out;
 }
 
-/* Стиль для статей */
-.articles article {
-    margin-bottom: 30px;
-    padding: 15px;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Применяем кастомный шрифт BOX */
+#site-title {
+    font-family: 'BOX'; /* Применяем шрифт BOX */
+    font-size: 5rem; /* Размер шрифта */
+    color: black; /* Черный цвет текста */
+    margin: 0;
 }
 
-h2 {
-    font-size: 2rem;
+#start-btn {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: transparent;
+    color: black; /* Цвет шрифта по умолчанию */
+    border: 2px solid #333; /* Кнопка без заливки */
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out; /* Плавное изменение */
+}
+
+#start-btn:hover {
+    background-color: #333; /* Заполнение кнопки при наведении */
+    color: white; /* Цвет шрифта становится белым при наведении */
+}
+
+
+#start-btn:focus {
+    outline: none; /* Убираем обводку при фокусе */
+}
+
+/* Основной контент */
+.main-content {
+    display: none;
+    margin-top: 100px;
+    padding: 20px;
     color: #333;
+    opacity: 0; /* Начальная скрытость контента */
+    transition: opacity 1s ease-in-out; /* Плавное появление контента */
 }
 
-/* Стиль для текста в статьях */
-p {
+.articles {
+    margin-top: 50px;
+}
+
+article {
+    margin-bottom: 30px;
+    opacity: 0; /* Скрытость статей по умолчанию */
+    animation: fadeIn 1s ease-in-out forwards; /* Плавное появление */
+}
+
+article:nth-child(1) {
+    animation-delay: 1s; /* Задержка появления первой статьи */
+}
+
+article:nth-child(2) {
+    animation-delay: 1.5s; /* Задержка появления второй статьи */
+}
+
+article:nth-child(3) {
+    animation-delay: 2s; /* Задержка появления третьей статьи */
+}
+
+article h2 {
+    font-size: 2rem;
+}
+
+article p {
     font-size: 1.2rem;
-    color: #666;
 }
 
-/* Плавная прокрутка */
-html {
-    scroll-behavior: smooth;
+/* Анимация для появления статей */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
