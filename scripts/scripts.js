@@ -12,3 +12,17 @@ document.getElementById('start-btn').addEventListener('click', function() {
         document.body.style.background = '#fff'; // Меняем фон на белый
     }, 1000); // Задержка, чтобы анимация была плавной
 });
+
+// Показать модальное окно
+const helpBtn = document.getElementById('help-btn');
+const modal = document.getElementById('modal');
+const closeModal = document.getElementById('close-modal');
+
+helpBtn.addEventListener('click', () => {
+    modal.style.display = 'flex'; // Показать модальное окно
+});
+
+// Закрыть модальное окно
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
