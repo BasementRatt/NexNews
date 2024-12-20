@@ -7,14 +7,10 @@
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
-    {% include "includes/sidebar.html" %}
-    {% include "includes/bottom.html" %}
-    <main>
-    {% block content %}
-    {% endblock %}
-    </main>
-    {% include "includes/footer.html" %}
-    <script src="{% static 'scripts/scripts.js' %}"></script>
-</body>
+{% include "includes/sidebar.html" %}
+{% include "includes/bottom.html" %}
+{% block content %}
+{% endblock %}
+{% include "includes/footer.html" %}
+<script src="{% static 'scripts/scripts.js' %}"></script>
 </html>
