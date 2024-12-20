@@ -1,0 +1,13 @@
+{% load static %}
+<div class="sidebar" id="sidebar">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    <nav>
+        <ul>
+            <li><a href="{% url 'nex:index' %}">Главная</a></li>
+            <li><a href="#">Новости</a></li>
+            <li><a href="{% url 'pages:about' %}">О нас</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+    </nav>
+</div>
+<button class="toggle-btn" id="toggleBtn">☰</button>

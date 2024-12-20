@@ -1,7 +1,7 @@
 /* Подключаем кастомный шрифт BOX */
 @font-face {
     font-family: 'BOX';
-    src: url('static_dev/fonts/as.ttf') format('truetype');
+    src: url('../fonts/as.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -9,7 +9,7 @@
 /* Стили для body */
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'BOX', sans-serif;
 }
 
 /* Кнопка "начать" и Nexnews */
@@ -88,6 +88,14 @@ body {
     transition: opacity 1s ease-in-out; /* Плавное появление контента */
 }
 
+/* footer по центру и в самом низу сайта*/
+.footer {
+    font-size: 0.8rem;
+    text-align: center;
+    height: 40x;
+	margin-top: -30px;
+  }
+
 .articles {
     margin-top: 50px;
 }
@@ -162,4 +170,70 @@ article p {
 
 #close-modal:hover {
     background-color: #555;
+}
+
+/* sidebar */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    background: none;
+    border: none;
+    color: #818181;
+    cursor: pointer;
+}
+
+.toggle-btn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+.content {
+    transition: margin-left .5s;
+    padding: 20px;
+    margin-left: 0;
+}
+
+.sidebar.open {
+    width: 250px;
+}
+
+.content.shift {
+    margin-left: 250px;
 }
