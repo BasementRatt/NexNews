@@ -8,8 +8,8 @@
 
 /* Стили для body */
 body {
-    margin: 0;
     font-family: 'BOX', sans-serif;
+    margin: 0;
 }
 
 /* Кнопка "начать" и Nexnews */
@@ -89,7 +89,8 @@ body {
 }
 
 /* footer по центру и в самом низу сайта*/
-.footer {
+#site-footer {
+    display: none;
     font-size: 0.8rem;
     text-align: center;
     height: 40x;
@@ -212,6 +213,7 @@ article p {
 }
 
 .toggle-btn {
+    display: none;
     font-size: 20px;
     cursor: pointer;
     background-color: #111;
