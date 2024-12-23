@@ -57,6 +57,30 @@ body {
     outline: none;
 }
 
+/* Кнопка ? */
+#help-btn {
+    position: fixed; /* Фиксированная позиция относительно окна */
+    top: 20px; /* Отступ сверху */
+    right: 20px; /* Отступ справа */
+    width: 50px;
+    height: 50px;
+    background-color: transparent; /* Прозрачный фон */
+    border: 2px solid black; /* Чёрная рамка */
+    border-radius: 50%; /* Круглая форма */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black; /* Чёрный текст */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Плавный переход */
+    z-index: 100; /* Поверх всех элементов */
+}
+
+#help-btn:hover {
+    background-color: black; /* Заполнение чёрным цветом при наведении */
+    color: white; /* Белый текст при наведении */
+    border-color: white; /* Белая рамка при наведении */
+}
+
 /* Основной контент */
 .main-content {
     margin: 0 auto;
@@ -130,11 +154,11 @@ article p {
 
 .modal-content {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 5px;
+    border-radius: 20px;
     text-align: center;
     max-width: 90%;
-    font-size: 3vw;
+    font-size: 2vb;
 }
 
 #close-modal {
