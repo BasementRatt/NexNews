@@ -6,18 +6,20 @@
     font-style: normal;
 }
 
-/* Стили для body */
+/* Базовые настройки */
 body {
-    font-family: 'BOX', sans-serif;
+    font-family: sans-serif; /* Стандартный шрифт для всего текста */
     margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
-/* Кнопка "начать" и Nexnews */
+/* Заголовок сайта */
 #main-header {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Центрируем по вертикали и горизонтали */
+    transform: translate(-50%, -50%);
     text-align: center;
     padding: 20px;
     background: transparent;
@@ -25,78 +27,56 @@ body {
     transition: all 1s ease-in-out;
 }
 
-/* Применяем кастомный шрифт BOX */
+/* Название сайта с кастомным шрифтом */
 #site-title {
-    font-family: 'BOX'; /* Применяем шрифт BOX */
-    font-size: 5rem; /* Размер шрифта */
-    color: black; /* Черный цвет текста */
+    font-family: 'BOX'; /* Применяем кастомный шрифт только к названию сайта */
+    font-size: 5vw; /* Размер шрифта зависит от ширины экрана */
+    color: black;
     margin: 0;
 }
 
+/* Кнопка "Начать" */
 #start-btn {
     margin-top: 20px;
-    padding: 10px 30px;
-    font-size: 1.5rem;
+    padding: 10px 5vw; /* Ширина кнопки зависит от ширины экрана */
+    font-size: 1.5vw;
     cursor: pointer;
     background-color: transparent;
-    color: black; /* Цвет шрифта по умолчанию */
-    border: 2px solid #333; /* Кнопка без заливки */
+    color: black;
+    border: 2px solid #333;
     border-radius: 5px;
-    transition: all 0.3s ease-in-out; /* Плавное изменение */
+    transition: all 0.3s ease-in-out;
 }
 
 #start-btn:hover {
-    background-color: #333; /* Заполнение кнопки при наведении */
-    color: white; /* Цвет шрифта становится белым при наведении */
+    background-color: #333;
+    color: white;
 }
 
 #start-btn:focus {
-    outline: none; /* Убираем обводку при фокусе */
-}
-
-/* Стили для кнопки с вопросительным знаком */
-#help-btn {
-    position: fixed; /* Фиксированная позиция относительно окна */
-    top: 20px; /* Отступ сверху */
-    right: 20px; /* Отступ справа */
-    width: 50px;
-    height: 50px;
-    background-color: transparent; /* Прозрачный фон */
-    border: 2px solid black; /* Чёрная рамка */
-    border-radius: 50%; /* Круглая форма */
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: black; /* Чёрный текст */
-    cursor: pointer;
-    transition: all 0.3s ease-in-out; /* Плавный переход */
-    z-index: 100; /* Поверх всех элементов */
-}
-
-#help-btn:hover {
-    background-color: black; /* Заполнение чёрным цветом при наведении */
-    color: white; /* Белый текст при наведении */
-    border-color: white; /* Белая рамка при наведении */
+    outline: none;
 }
 
 /* Основной контент */
 .main-content {
-    display: none;
-    margin-top: 100px;
+    margin: 0 auto;
+    max-width: 90%; /* Ограничиваем ширину основного контента */
     padding: 20px;
     color: #333;
-    opacity: 0; /* Начальная скрытость контента */
-    transition: opacity 1s ease-in-out; /* Плавное появление контента */
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
-/* footer по центру и в самом низу сайта*/
+/* footer по центру и в самом низу сайта */
 #site-footer {
     display: none;
     font-size: 0.8rem;
     text-align: center;
-    height: 40x;
-	margin-top: -30px;
-  }
+    margin-top: -30px;
+}
 
+/* Адаптация статей */
 .articles {
     margin-top: 50px;
 }
@@ -104,27 +84,27 @@ body {
 article {
     margin-bottom: 30px;
     opacity: 0; /* Скрытость статей по умолчанию */
-    animation: fadeIn 1s ease-in-out forwards; /* Плавное появление */
+    animation: fadeIn 1s ease-in-out forwards;
 }
 
 article:nth-child(1) {
-    animation-delay: 1s; /* Задержка появления первой статьи */
+    animation-delay: 1s;
 }
 
 article:nth-child(2) {
-    animation-delay: 1.5s; /* Задержка появления второй статьи */
+    animation-delay: 1.5s;
 }
 
 article:nth-child(3) {
-    animation-delay: 2s; /* Задержка появления третьей статьи */
+    animation-delay: 2s;
 }
 
 article h2 {
-    font-size: 2rem;
+    font-size: 4vw;
 }
 
 article p {
-    font-size: 1.2rem;
+    font-size: 2.5vw;
 }
 
 /* Анимация для появления статей */
@@ -143,7 +123,7 @@ article p {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
-    z-index: 200; /* Поверх всех элементов */
+    z-index: 200;
     justify-content: center;
     align-items: center;
 }
@@ -153,8 +133,8 @@ article p {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    max-width: 500px;
-    width: 80%;
+    max-width: 90%;
+    font-size: 3vw;
 }
 
 #close-modal {

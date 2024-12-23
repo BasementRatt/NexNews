@@ -4,9 +4,8 @@
     <nav>
         <ul>
             <li><a href="{% url 'nex:index' %}">Главная</a></li>
-            <li><a href="#">Новости</a></li>
             <li><a href="{% url 'pages:about' %}">О нас</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><a href="{% url 'pages:contact' %}">Контакты</a></li>
         </ul>
     </nav>
     <img src={% static 'img/logo.png' %} width="50%" vspace="50%" hspace="25%" align="center">
