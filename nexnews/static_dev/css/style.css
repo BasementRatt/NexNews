@@ -1,17 +1,21 @@
 /* Подключаем кастомный шрифт BOX */
 @font-face {
     font-family: 'BOX';
-    src: url('../fonts/as.ttf') format('truetype');
+    src: url('../fonts/Faberge.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 /* Базовые настройки */
 body {
-    font-family: sans-serif; /* Стандартный шрифт для всего текста */
+    font-family: 'BOX', sans-serif; /* Применяем кастомный шрифт для всего текста */
     margin: 0;
     font-size: 16px;
     line-height: 1.5;
+    background: url('../img/background/black.jpg') no-repeat center center fixed; /* Фоновая картинка */
+    background-size: cover; /* Растягиваем фон на весь экран */
+    color: white; /* Весь текст белый */
+    cursor: auto; /* Курсор по умолчанию */
 }
 
 /* Заголовок сайта */
@@ -24,61 +28,14 @@ body {
     padding: 20px;
     background: transparent;
     z-index: 10;
-    transition: all 1s ease-in-out;
 }
 
 /* Название сайта с кастомным шрифтом */
 #site-title {
     font-family: 'BOX'; /* Применяем кастомный шрифт только к названию сайта */
     font-size: 5vw; /* Размер шрифта зависит от ширины экрана */
-    color: black;
+    color: white; /* Белый текст */
     margin: 0;
-}
-
-/* Кнопка "Начать" */
-#start-btn {
-    margin-top: 20px;
-    padding: 10px 5vw; /* Ширина кнопки зависит от ширины экрана */
-    font-size: 1.5vw;
-    cursor: pointer;
-    background-color: transparent;
-    color: black;
-    border: 2px solid #333;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-}
-
-#start-btn:hover {
-    background-color: #333;
-    color: white;
-}
-
-#start-btn:focus {
-    outline: none;
-}
-
-/* Кнопка ? */
-#help-btn {
-    position: fixed; /* Фиксированная позиция относительно окна */
-    top: 20px; /* Отступ сверху */
-    right: 20px; /* Отступ справа */
-    width: 50px;
-    height: 50px;
-    background-color: transparent; /* Прозрачный фон */
-    border: 2px solid black; /* Чёрная рамка */
-    border-radius: 50%; /* Круглая форма */
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: black; /* Чёрный текст */
-    cursor: pointer;
-    transition: all 0.3s ease-in-out; /* Плавный переход */
-    z-index: 100; /* Поверх всех элементов */
-}
-
-#help-btn:hover {
-    background-color: black; /* Заполнение чёрным цветом при наведении */
-    color: white; /* Белый текст при наведении */
-    border-color: white; /* Белая рамка при наведении */
 }
 
 /* Основной контент */
@@ -86,160 +43,208 @@ body {
     margin: 0 auto;
     max-width: 90%; /* Ограничиваем ширину основного контента */
     padding: 20px;
-    color: #333;
+    color: white; /* Белый текст */
     display: none;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
 }
 
 /* footer по центру и в самом низу сайта */
 #site-footer {
-    display: none;
-    font-size: 0.8rem;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    margin-top: -30px;
+    color: white; /* Белый текст */
+    font-size: 0.8rem;
 }
 
-/* Адаптация статей */
-.articles {
-    margin-top: 50px;
+#site-footer p {
+    margin: 0;
 }
 
-article {
-    margin-bottom: 30px;
-    opacity: 0; /* Скрытость статей по умолчанию */
-    animation: fadeIn 1s ease-in-out forwards;
+/* Стили для кнопки "НАЧАТЬ" */
+.button-wrapper {
+    position: relative;
 }
 
-article:nth-child(1) {
-    animation-delay: 1s;
+.button {
+    z-index: 1;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    appearance: none;
+    display: inline-block;
+    background-color: #FFEB3B; /* Желтый цвет кнопки */
+    color: black; /* Черный текст на кнопке */
+    border: none; /* Убираем границу */
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 1.5vw;
+    cursor: pointer; /* Курсор по умолчанию */
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px 0px rgba(255, 235, 59, 0.5); /* Легкое свечение */
+    font-family: 'BOX', sans-serif; /* Применяем кастомный шрифт для кнопок */
 }
 
-article:nth-child(2) {
-    animation-delay: 1.5s;
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 999px;
+    background: rgba(255, 235, 59, 0.5); /* Полупрозрачный желтый */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: -1;
 }
 
-article:nth-child(3) {
-    animation-delay: 2s;
+.button-wrapper:hover .button::before {
+    opacity: 1; /* Появляется при наведении */
 }
 
-article h2 {
-    font-size: 4vw;
+.button-wrapper:hover .button {
+    box-shadow: 0px 0px 20px 5px rgba(255, 235, 59, 0.8); /* Сильное свечение при наведении */
+    transform: scale(1.1); /* Анимация увеличения при наведении */
 }
 
-article p {
-    font-size: 2.5vw;
+/* Стили для формы входа */
+.login-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: hsl(0, 0%, 10%);
+    color: hsl(0, 0%, 100%);
+    padding: 10px; /* Уменьшаем отступы */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 12em; /* Уменьшаем ширину */
+    height: 3em; /* Уменьшаем высоту */
+    overflow: hidden;
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out; /* Добавляем анимацию для ширины и высоты */
+    font-family: 'BOX', sans-serif; /* Применяем кастомный шрифт для формы */
 }
 
-/* Анимация для появления статей */
-@keyframes fadeIn {
-    to {
+.login-form[data-expanded="true"] {
+    width: 16.5em; /* Возвращаем исходную ширину */
+    height: 16em; /* Возвращаем исходную высоту */
+}
+
+.login-form__btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease-in-out;
+    font-family: 'BOX', sans-serif; /* Применяем кастомный шрифт для кнопок */
+}
+
+/* Увеличиваем размер шрифта для первого текста "Вход" */
+.login-form__btn--start {
+    background-color: transparent;
+    color: hsl(0, 0%, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3em; /* Уменьшаем высоту кнопки */
+    text-transform: uppercase;
+    font-size: 1.2rem; /* Увеличиваем размер шрифта */
+}
+
+.login-form__btn--primary {
+    background-color: #FFEB3B;
+    color: black;
+}
+
+.login-form__btn--secondary {
+    background-color: hsl(0, 0%, 20%);
+    color: hsl(0, 0%, 100%);
+    font-size: 0.9rem;
+}
+
+.login-form__btn--primary:hover {
+    background-color: #FFD600;
+}
+
+.login-form__btn--secondary:hover {
+    background-color: hsl(0, 0%, 30%);
+}
+
+.login-form__content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.login-form[data-expanded="true"] .login-form__content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.login-form__auth-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.login-form[data-auth="true"] .login-form__auth-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+.login-form__input {
+    padding: 10px;
+    border: 1px solid hsl(0, 0%, 30%);
+    border-radius: 5px;
+    background-color: hsl(0, 0%, 15%);
+    color: hsl(0, 0%, 100%);
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
+    box-sizing: border-box; /* Убираем выход за границы рамки */
+    font-family: 'BOX', sans-serif; /* Применяем кастомный шрифт для полей ввода */
+}
+
+.login-form__btn--back {
+    background-color: hsl(0, 0%, 20%);
+    color: hsl(0, 0%, 100%);
+    font-size: 0.9rem;
+}
+
+.login-form__btn--back:hover {
+    background-color: hsl(0, 0%, 30%);
+}
+
+/* Стили для кнопки "Авторизоваться" */
+.login-form__btn--auth {
+    background-color: #FFEB3B;
+    color: black;
+    font-size: 1rem;
+}
+
+.login-form__btn--auth:hover {
+    background-color: #FFD600;
+}
+
+/* Анимация для заголовка и кнопки "НАЧАТЬ" */
+@keyframes slideUpAndFadeOut {
+    0% {
+        transform: translate(-50%, -50%);
         opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -150%);
+        opacity: 0;
     }
 }
 
-/* Модальное окно */
-#modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 200;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 5px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 90%;
-    font-size: 2vb;
-}
-
-#close-modal {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-#close-modal:hover {
-    background-color: #555;
-}
-
-/* sidebar */
-.sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidebar a:hover {
-    color: #f1f1f1;
-}
-
-.sidebar .close-btn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-    background: none;
-    border: none;
-    color: #818181;
-    cursor: pointer;
-}
-
-.toggle-btn {
-    display: none;
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #111;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 2;
-}
-
-.content {
-    transition: margin-left .5s;
-    padding: 20px;
-    margin-left: 0;
-}
-
-.sidebar.open {
-    width: 250px;
-}
-
-.content.shift {
-    margin-left: 250px;
+/* Класс для анимации */
+.slide-up-fade-out {
+    animation: slideUpAndFadeOut 0.5s ease-in-out forwards;
 }

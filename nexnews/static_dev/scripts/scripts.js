@@ -1,74 +1,116 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Получаем элементы
-    const helpBtn = document.getElementById('help-btn');
-    const modal = document.getElementById('modal');
-    const closeModal = document.getElementById('close-modal');
     const startBtn = document.getElementById('start-btn');
     const mainHeader = document.getElementById('main-header');
-    const footer = document.getElementById('site-footer');
-    const toggleBtn = document.getElementById('toggleBtn');
-    const sidebar = document.getElementById('sidebar');
-    const closeBtn = document.getElementById('closeBtn');
+    const mainContent = document.querySelector('.main-content');
+    const loginForm = document.getElementById('login-form');
+    const authBtn = document.getElementById('auth-btn');
+    const backBtn = document.getElementById('back-btn');
+    const loginFormContent = document.querySelector('.login-form__content');
+    const authFormContent = document.querySelector('.login-form__auth-content');
+    const loginFormStartBtn = document.querySelector('.login-form__btn--start');
+    const authSubmitBtn = document.querySelector('.login-form__btn--auth');
 
     // Проверяем, находимся ли мы на главной странице
     const isHomePage = document.body.classList.contains('home-page');
 
     if (isHomePage) {
         // Если это главная страница
-        if (startBtn && mainHeader && footer && toggleBtn) {
+        if (startBtn && mainHeader && mainContent && loginForm) {
             // Скрываем элементы по умолчанию
             mainHeader.style.opacity = '1';
             startBtn.style.opacity = '1';
-            footer.style.display = 'none';
-            toggleBtn.style.display = 'none';
+            mainContent.style.display = 'none'; // Скрываем основной контент
 
             // При нажатии на кнопку "НАЧАТЬ"
             startBtn.addEventListener('click', function() {
-                // Анимация для скрытия заголовка и кнопки
-                mainHeader.style.transform = 'translate(-50%, -200%)'; // Поднимаем вверх
-                mainHeader.style.opacity = '0';
-                startBtn.style.opacity = '0';
+                // Добавляем класс для анимации
+                mainHeader.classList.add('slide-up-fade-out');
+                startBtn.classList.add('slide-up-fade-out');
 
-                // Плавный переход на статьи
-                setTimeout(function() {
-                    toggleBtn.style.display = 'block'; // Показываем кнопку сайдбара
-                    footer.style.display = 'block'; // Показываем футер
-                    document.querySelector('.main-content').style.display = 'block'; // Показываем контент
-                    document.querySelector('.main-content').style.opacity = '1'; // Плавно показываем контент
-                    document.body.style.background = '#fff'; // Меняем фон на белый
-                }, 500); // Задержка, чтобы анимация была плавной
+                // Скрываем заголовок и кнопку "НАЧАТЬ" после анимации
+                setTimeout(() => {
+                    mainHeader.style.display = 'none';
+                    startBtn.style.display = 'none';
+                }, 500); // Время анимации
+
+                // Показываем форму входа
+                mainContent.style.display = 'block';
+                mainContent.style.opacity = '1';
+                loginForm.style.display = 'block';
+                loginForm.style.opacity = '1';
             });
         }
-    } else {
-        // Если это не главная страница, показываем элементы навигации по умолчанию
-        if (footer) footer.style.display = 'block';
-        if (toggleBtn) toggleBtn.style.display = 'block';
     }
 
-    // Проверяем, существуют ли элементы для сайдбара
-    if (toggleBtn && sidebar && closeBtn) {
-        // sidebar
-        toggleBtn.addEventListener('click', function() {
-            sidebar.classList.toggle('open');
-            document.querySelector('.content').classList.toggle('shift');
-        });
-
-        closeBtn.addEventListener('click', function() {
-            sidebar.classList.remove('open');
-            document.querySelector('.content').classList.remove('shift');
-        });
-    }
-
-    // Проверяем, существуют ли элементы для модального окна
-    if (helpBtn && modal && closeModal) {
-        // Показать модальное окно
-        helpBtn.addEventListener('click', () => {
-            modal.style.display = 'flex'; // Показать модальное окно
-        });
-
-        // Закрыть модальное окно
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-    }
+    // Инициализация формы входа
+    const loginFormInstance = new LoginForm("#login-form");
 });
+
+// Класс для управления формой входа
+class LoginForm {
+    constructor(el) {
+        this.form = document.querySelector(el);
+        this.form?.addEventListener("click", this.toggle.bind(this));
+        this.authBtn = this.form?.querySelector("#auth-btn");
+        this.backBtn = this.form?.querySelector("#back-btn");
+        this.loginFormContent = this.form?.querySelector(".login-form__content");
+        this.authFormContent = this.form?.querySelector(".login-form__auth-content");
+        this.loginFormStartBtn = this.form?.querySelector(".login-form__btn--start");
+        this.authSubmitBtn = this.form?.querySelector(".login-form__btn--auth");
+
+        this.authBtn?.addEventListener("click", this.showAuthForm.bind(this));
+        this.backBtn?.addEventListener("click", this.showLoginForm.bind(this));
+        this.authSubmitBtn?.addEventListener("click", this.handleAuthSubmit.bind(this));
+    }
+
+    toggle(e) {
+        const button = e.target;
+        if (button.hasAttribute("data-toggle")) {
+            this.expanded = !this.expanded;
+
+            if (this.expanded) {
+                const loginInput = this.form?.querySelector("#login");
+                loginInput?.focus();
+            }
+        }
+    }
+
+    showAuthForm() {
+        this.loginFormContent.style.display = "none";
+        this.authFormContent.style.display = "block";
+        this.loginFormStartBtn.textContent = "Авторизация";
+        this.form.setAttribute("data-auth", "true"); // Устанавливаем атрибут для анимации
+    }
+
+    showLoginForm() {
+        this.authFormContent.style.display = "none";
+        this.loginFormContent.style.display = "block";
+        this.loginFormStartBtn.textContent = "Вход";
+        this.form.setAttribute("data-auth", "false"); // Убираем атрибут для анимации
+    }
+
+    handleAuthSubmit(e) {
+        e.preventDefault();
+        const login = this.form?.querySelector("#auth-login").value;
+        const password = this.form?.querySelector("#auth-password").value;
+        const confirmPassword = this.form?.querySelector("#auth-confirm-password").value;
+
+        if (password !== confirmPassword) {
+            alert("Пароли не совпадают!");
+            return;
+        }
+
+        alert(`Авторизация успешна!\nЛогин: ${login}\nПароль: ${password}`);
+        this.form.reset();
+        this.showLoginForm();
+    }
+
+    set expanded(value) {
+        this.form?.setAttribute("data-expanded", value.toString());
+    }
+
+    get expanded() {
+        return this.form?.getAttribute("data-expanded") === "true";
+    }
+}

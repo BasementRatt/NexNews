@@ -1,29 +1,37 @@
 {% extends "base.html" %}
 {% block title %}
-NEX
+ПРИДУМАТЬ НАЗВАНИЕ
 {% endblock %}
 {% block content %}
 <body class="home-page">
 <header id="main-header">
-        <h1 id="site-title">N E X</h1>
-        <button id="start-btn">НАЧАТЬ</button>
+    <h1 id="site-title">ПРИДУМАТЬ НАЗВАНИЕ</h1>
+    <a class="button-wrapper">
+        <button id="start-btn" class="button bg-yellow-500 px-16 py-4 rounded-full uppercase">НАЧАТЬ</button>
+    </a>
 </header>
-    <div class="main-content">
-        <div class="articles">
-            <article>
-                <h2>MMM HUETA</h2>
-                <h2>Заголовок статьи 1</h2>
-                <p>Содержание статьи 1...</p>
-            </article>
-            <article>
-                <h2>Заголовок статьи 2</h2>
-                <p>Содержание статьи 2...</p>
-            </article>
-            <article>
-                <h2>Заголовок статьи 3</h2>
-                <p>Содержание статьи 3...</p>
-            </article>
+<div class="main-content" style="display: none;">
+    <!-- Форма для входа -->
+    <form id="login-form" class="login-form" action="">
+        <button class="login-form__btn login-form__btn--start" type="button" data-toggle>Вход</button>
+        <div class="login-form__content">
+            <input id="login" class="login-form__input" type="text" placeholder="Логин" required>
+            <input id="password" class="login-form__input" type="password" placeholder="Пароль" required>
+            <button class="login-form__btn login-form__btn--primary" type="submit">Вход</button>
+            <button class="login-form__btn login-form__btn--secondary" type="button" id="auth-btn">Авторизоваться</button>
         </div>
-    </div>
+        <!-- Форма для авторизации -->
+        <div class="login-form__auth-content" style="display: none;">
+            <input id="auth-login" class="login-form__input" type="text" placeholder="Логин" required>
+            <input id="auth-password" class="login-form__input" type="password" placeholder="Пароль" required>
+            <input id="auth-confirm-password" class="login-form__input" type="password" placeholder="Подтвердите пароль" required>
+            <button class="login-form__btn login-form__btn--auth" type="submit">Авторизоваться</button>
+            <button class="login-form__btn login-form__btn--back" type="button" id="back-btn">Назад</button>
+        </div>
+    </form>
+</div>
+<footer id="site-footer">
+    <p>©Oleg_52 and Kryaksa 2024</p>
+</footer>
 </body>
 {% endblock %}
