@@ -4,19 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainHeader = document.getElementById('main-header');
     const mainContent = document.querySelector('.main-content');
     const loginForm = document.getElementById('login-form');
-    const authBtn = document.getElementById('auth-btn');
-    const backBtn = document.getElementById('back-btn');
-    const loginFormContent = document.querySelector('.login-form__content');
-    const authFormContent = document.querySelector('.login-form__auth-content');
-    const loginFormStartBtn = document.querySelector('.login-form__btn--start');
-    const authSubmitBtn = document.querySelector('.login-form__btn--auth');
+    const overlay = document.getElementById('overlay'); // Получаем элемент overlay
 
     // Проверяем, находимся ли мы на главной странице
     const isHomePage = document.body.classList.contains('home-page');
 
     if (isHomePage) {
         // Если это главная страница
-        if (startBtn && mainHeader && mainContent && loginForm) {
+        if (startBtn && mainHeader && mainContent && loginForm && overlay) {
             // Скрываем элементы по умолчанию
             mainHeader.style.opacity = '1';
             startBtn.style.opacity = '1';
@@ -27,11 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Добавляем класс для анимации
                 mainHeader.classList.add('slide-up-fade-out');
                 startBtn.classList.add('slide-up-fade-out');
+                overlay.classList.add('slide-up-fade-out'); // Анимация для фона
 
-                // Скрываем заголовок и кнопку "НАЧАТЬ" после анимации
+                // Скрываем заголовок, кнопку и фон после анимации
                 setTimeout(() => {
                     mainHeader.style.display = 'none';
                     startBtn.style.display = 'none';
+                    overlay.style.display = 'none';
                 }, 500); // Время анимации
 
                 // Показываем форму входа
@@ -80,14 +77,14 @@ class LoginForm {
         this.loginFormContent.style.display = "none";
         this.authFormContent.style.display = "block";
         this.loginFormStartBtn.textContent = "Авторизация";
-        this.form.setAttribute("data-auth", "true"); // Устанавливаем атрибут для анимации
+        this.form.setAttribute("data-auth", "true");
     }
 
     showLoginForm() {
         this.authFormContent.style.display = "none";
         this.loginFormContent.style.display = "block";
         this.loginFormStartBtn.textContent = "Вход";
-        this.form.setAttribute("data-auth", "false"); // Убираем атрибут для анимации
+        this.form.setAttribute("data-auth", "false");
     }
 
     handleAuthSubmit(e) {
