@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainHeader = document.getElementById('main-header');
     const mainContent = document.querySelector('.main-content');
     const loginForm = document.getElementById('login-form');
-    const overlay = document.getElementById('overlay'); // Получаем элемент overlay
+    const overlay = document.getElementById('overlay');
 
     // Проверяем, находимся ли мы на главной странице
     const isHomePage = document.body.classList.contains('home-page');
@@ -12,30 +12,23 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isHomePage) {
         // Если это главная страница
         if (startBtn && mainHeader && mainContent && loginForm && overlay) {
-            // Скрываем элементы по умолчанию
-            mainHeader.style.opacity = '1';
-            startBtn.style.opacity = '1';
-            mainContent.style.display = 'none'; // Скрываем основной контент
-
             // При нажатии на кнопку "НАЧАТЬ"
             startBtn.addEventListener('click', function() {
-                // Добавляем класс для анимации
-                mainHeader.classList.add('slide-up-fade-out');
-                startBtn.classList.add('slide-up-fade-out');
-                overlay.classList.add('slide-up-fade-out'); // Анимация для фона
+                // Добавляем класс для анимации растворения
+                mainHeader.classList.add('fade-out');
+                startBtn.classList.add('fade-out');
+                overlay.classList.add('fade-out');
 
-                // Скрываем заголовок, кнопку и фон после анимации
+                // Показываем форму входа после анимации
                 setTimeout(() => {
                     mainHeader.style.display = 'none';
                     startBtn.style.display = 'none';
                     overlay.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    mainContent.style.opacity = '1';
+                    loginForm.style.display = 'block';
+                    loginForm.style.opacity = '1';
                 }, 500); // Время анимации
-
-                // Показываем форму входа
-                mainContent.style.display = 'block';
-                mainContent.style.opacity = '1';
-                loginForm.style.display = 'block';
-                loginForm.style.opacity = '1';
             });
         }
     }
@@ -78,6 +71,10 @@ class LoginForm {
         this.authFormContent.style.display = "block";
         this.loginFormStartBtn.textContent = "Авторизация";
         this.form.setAttribute("data-auth", "true");
+
+        // Рассчитываем высоту содержимого и применяем ее к форме
+        const contentHeight = this.authFormContent.scrollHeight;
+        this.form.style.height = `${contentHeight + 40}px`; // Добавляем отступы
     }
 
     showLoginForm() {
@@ -85,10 +82,15 @@ class LoginForm {
         this.loginFormContent.style.display = "block";
         this.loginFormStartBtn.textContent = "Вход";
         this.form.setAttribute("data-auth", "false");
+
+        // Рассчитываем высоту содержимого и применяем ее к форме
+        const contentHeight = this.loginFormContent.scrollHeight;
+        this.form.style.height = `${contentHeight + 40}px`; // Добавляем отступы
     }
 
     handleAuthSubmit(e) {
         e.preventDefault();
+        const email = this.form?.querySelector("#auth-email").value;
         const login = this.form?.querySelector("#auth-login").value;
         const password = this.form?.querySelector("#auth-password").value;
         const confirmPassword = this.form?.querySelector("#auth-confirm-password").value;
@@ -98,7 +100,7 @@ class LoginForm {
             return;
         }
 
-        alert(`Авторизация успешна!\nЛогин: ${login}\nПароль: ${password}`);
+        alert(`Авторизация успешна!\nПочта: ${email}\nЛогин: ${login}\nПароль: ${password}`);
         this.form.reset();
         this.showLoginForm();
     }

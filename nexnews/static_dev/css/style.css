@@ -27,7 +27,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
     z-index: 5; /* Находится под заголовком и кнопкой, но над фоном */
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* Заголовок сайта */
@@ -40,7 +40,7 @@ body {
     padding: 20px;
     background: transparent;
     z-index: 10;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* Название сайта с кастомным шрифтом */
@@ -133,19 +133,46 @@ body {
     z-index: 1000;
     background-color: hsl(0, 0%, 10%);
     color: hsl(0, 0%, 100%);
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 12em;
-    height: 3em;
+    width: 16.5em;
+    height: auto;
     overflow: hidden;
-    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out, opacity 0.5s ease-in-out;
     font-family: 'BOX', sans-serif;
 }
 
 .login-form[data-expanded="true"] {
     width: 16.5em;
-    height: 16em;
+    height: auto;
+}
+
+.login-form__auth-content {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+
+.login-form[data-auth="true"] .login-form__auth-content {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+}
+
+.login-form__input {
+    padding: 10px;
+    border: 1px solid hsl(0, 0%, 30%);
+    border-radius: 5px;
+    background-color: hsl(0, 0%, 15%);
+    color: hsl(0, 0%, 100%);
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-family: 'BOX', sans-serif;
 }
 
 .login-form__btn {
@@ -189,45 +216,11 @@ body {
     background-color: hsl(0, 0%, 30%);
 }
 
-.login-form__content {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-}
-
-.login-form[data-expanded="true"] .login-form__content {
-    opacity: 1;
-    visibility: visible;
-}
-
-.login-form__auth-content {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-}
-
-.login-form[data-auth="true"] .login-form__auth-content {
-    opacity: 1;
-    visibility: visible;
-}
-
-.login-form__input {
-    padding: 10px;
-    border: 1px solid hsl(0, 0%, 30%);
-    border-radius: 5px;
-    background-color: hsl(0, 0%, 15%);
-    color: hsl(0, 0%, 100%);
-    font-size: 1rem;
-    width: 100%;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    font-family: 'BOX', sans-serif;
-}
-
 .login-form__btn--back {
     background-color: hsl(0, 0%, 20%);
     color: hsl(0, 0%, 100%);
     font-size: 0.9rem;
+    margin-top: 10px;
 }
 
 .login-form__btn--back:hover {
@@ -238,25 +231,24 @@ body {
     background-color: #FFEB3B;
     color: black;
     font-size: 1rem;
+    margin-top: 10px;
 }
 
 .login-form__btn--auth:hover {
     background-color: #FFD600;
 }
 
-/* Анимация для заголовка, кнопки и фона */
-@keyframes slideUpAndFadeOut {
+/* Анимация для медленного растворения */
+@keyframes fadeOut {
     0% {
-        transform: translate(-50%, -50%);
         opacity: 1;
     }
     100% {
-        transform: translate(-50%, -150%);
         opacity: 0;
     }
 }
 
-/* Класс для анимации */
-.slide-up-fade-out {
-    animation: slideUpAndFadeOut 0.5s ease-in-out forwards;
+/* Класс для анимации растворения */
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
 }
