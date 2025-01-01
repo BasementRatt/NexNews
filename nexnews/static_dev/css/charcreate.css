@@ -1,0 +1,181 @@
+/* Базовые стили для страницы создания персонажа */
+body {
+    background: #1e1e1e; /* Темный фон */
+    color: #ffffff; /* Белый текст */
+    font-family: 'BOX', sans-serif; /* Шрифт как на главной странице */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.charcreate-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    background: #2c2c2c; /* Темный контейнер */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.creation-panel {
+    width: 40%;
+    padding-right: 20px;
+    border-right: 2px solid #444444;
+}
+
+.character-preview {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.character {
+    width: 200px;
+    height: 400px;
+    position: relative;
+}
+
+.hair, .head, .eyes, .mouth, .body, .legs, .shoes {
+    position: absolute;
+    background: #555555; /* Серый цвет для фигур */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.hair {
+    width: 100px;
+    height: 30px;
+    top: -30px; /* Волосы выше головы */
+    left: 50px;
+    border-radius: 50% 50% 0 0;
+}
+
+.head {
+    width: 100px;
+    height: 100px;
+    top: 0;
+    left: 50px;
+    border-radius: 50%;
+}
+
+.eyes {
+    width: 50px;
+    height: 20px;
+    top: 40px;
+    left: 75px;
+}
+
+.mouth {
+    width: 50px;
+    height: 20px;
+    top: 70px;
+    left: 75px;
+}
+
+.body {
+    width: 120px;
+    height: 150px;
+    top: 100px;
+    left: 40px;
+}
+
+.legs {
+    width: 80px;
+    height: 120px;
+    top: 250px;
+    left: 60px;
+}
+
+.shoes {
+    width: 100px;
+    height: 30px;
+    top: 370px;
+    left: 50px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444444;
+    border-radius: 5px;
+    background-color: #3a3a3a;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tab-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tab-button.active {
+    background-color: #45a049;
+}
+
+.tab-content {
+    display: none;
+    margin-bottom: 15px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.option-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3a3a3a;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.option-button:hover {
+    background-color: #4CAF50;
+}
+
+.randomize-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFEB3B;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.randomize-button:hover {
+    background-color: #FFD600;
+}
