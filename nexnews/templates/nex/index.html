@@ -7,9 +7,14 @@
 <div id="overlay"></div> <!-- Полупрозрачный фон -->
 <header id="main-header">
     <h1 id="site-title">ПРИДУМАТЬ НАЗВАНИЕ</h1>
-    <a class="button-wrapper">
-        <button id="start-btn" class="button bg-yellow-500 px-16 py-4 rounded-full uppercase">НАЧАТЬ</button>
-    </a>
+    <div class="button-container">
+        <a class="button-wrapper" href="{% url 'pages:charcreate' %}">
+            <button id="charcreate-btn" class="button bg-green-500 px-16 py-4 rounded-full uppercase">Создать персонажа</button>
+        </a>
+        <a class="button-wrapper">
+            <button id="start-btn" class="button bg-yellow-500 px-16 py-4 rounded-full uppercase">НАЧАТЬ</button>
+        </a>
+    </div>
 </header>
 <div class="main-content" style="display: none;">
     <!-- Форма для входа -->

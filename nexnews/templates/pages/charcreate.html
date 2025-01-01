@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание персонажа</title>
+    <style>
+        /* Базовые стили для страницы создания персонажа */
+        body {
+            background: #1e1e1e; /* Темный фон */
+            color: #ffffff; /* Белый текст */
+            font-family: Arial, sans-serif; /* Простой шрифт */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .charcreate-container {
+            background: #2c2c2c; /* Темный контейнер */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .charcreate-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .charcreate-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #cccccc;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 10px;
+            border: 1px solid #444444;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            background-color: #4CAF50; /* Зеленая кнопка */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049; /* Темно-зеленый при наведении */
+        }
+    </style>
+</head>
+<body>
+<div class="charcreate-container">
+    <h1>Создание персонажа</h1>
+    <form id="charcreate-form" class="charcreate-form" action="{% url 'pages:charcreate' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="char-name">Имя персонажа:</label>
+            <input type="text" id="char-name" name="char-name" required placeholder="Введите имя">
+        </div>
+        <div class="form-group">
+            <label for="char-class">Класс персонажа:</label>
+            <select id="char-class" name="char-class" required>
+                <option value="">Выберите класс</option>
+                <option value="warrior">Воин</option>
+                <option value="mage">Маг</option>
+                <option value="rogue">Разбойник</option>
+                <option value="cleric">Жрец</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="char-gender">Пол персонажа:</label>
+            <select id="char-gender" name="char-gender" required>
+                <option value="">Выберите пол</option>
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
+                <option value="other">Другой</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="char-bio">Биография персонажа:</label>
+            <textarea id="char-bio" name="char-bio" placeholder="Расскажите о своем персонаже"></textarea>
+        </div>
+        <button type="submit" class="submit-button">Создать персонажа</button>
+    </form>
+</div>
+</body>
+</html>
