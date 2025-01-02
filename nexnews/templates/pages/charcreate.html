@@ -8,100 +8,201 @@
     <link rel="stylesheet" href="{% static 'css/charcreate.css' %}">
 </head>
 <body>
-<div class="charcreate-container">
-    <!-- Левая панель: Интерфейс создания персонажа -->
-    <div class="creation-panel">
-        <h1>Создание персонажа</h1>
-        <form id="charcreate-form" class="charcreate-form">
-            <!-- Имя и фамилия -->
-            <div class="form-group">
-                <label for="char-first-name">Имя:</label>
-                <input type="text" id="char-first-name" name="char-first-name" required placeholder="Введите имя">
+<div class="scroll-wrapper">
+    <div class="scroll-content">
+        <div class="charcreate-container">
+            <!-- Левая панель: Интерфейс создания персонажа -->
+            <div class="creation-panel">
+                <h1>Создание персонажа</h1>
+                <form id="charcreate-form" class="charcreate-form">
+                    <!-- Имя и фамилия -->
+                    <div class="form-group">
+                        <label for="char-first-name">Имя:</label>
+                        <input type="text" id="char-first-name" name="char-first-name" required placeholder="Введите имя">
+                    </div>
+                    <div class="form-group">
+                        <label for="char-last-name">Фамилия:</label>
+                        <input type="text" id="char-last-name" name="char-last-name" required placeholder="Введите фамилию">
+                    </div>
+                    <!-- Выбор пола -->
+                    <div class="form-group">
+                        <label for="char-gender">Пол:</label>
+                        <select id="char-gender" name="char-gender" required>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select>
+                    </div>
+                    <!-- Вкладки для настройки внешности -->
+                    <div class="tabs">
+                        <button type="button" class="tab-button active" data-tab="hair">Волосы</button>
+                        <button type="button" class="tab-button" data-tab="eyes">Глаза</button>
+                        <button type="button" class="tab-button" data-tab="mouth">Рот</button>
+                        <button type="button" class="tab-button" data-tab="body">Тело</button>
+                        <button type="button" class="tab-button" data-tab="legs">Ноги</button>
+                        <button type="button" class="tab-button" data-tab="shoes">Обувь</button>
+                    </div>
+                    <!-- Контент вкладок -->
+                    <div class="tab-content" id="hair">
+                        <p>Выберите стиль волос:</p>
+                        <div class="options-list">
+                            <div class="option-item" data-part="hair" data-value="hair1.png">
+                                <img src="{% static 'images/hair1.png' %}" alt="Прическа 1">
+                                <span>Прическа 1</span>
+                            </div>
+                            <div class="option-item" data-part="hair" data-value="hair2.png">
+                                <img src="{% static 'images/hair2.png' %}" alt="Прическа 2">
+                                <span>Прическа 2</span>
+                            </div>
+                            <div class="option-item" data-part="hair" data-value="hair3.png">
+                                <img src="{% static 'images/hair3.png' %}" alt="Прическа 3">
+                                <span>Прическа 3</span>
+                            </div>
+                            <div class="option-item" data-part="hair" data-value="hair4.png">
+                                <img src="{% static 'images/hair4.png' %}" alt="Прическа 4">
+                                <span>Прическа 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="eyes" style="display: none;">
+                        <p>Выберите цвет глаз:</p>
+                        <div class="options-list">
+                            <div class="option-item" data-part="eyes" data-value="eyes1.png">
+                                <img src="{% static 'images/eyes1.png' %}" alt="Глаза 1">
+                                <span>Глаза 1</span>
+                            </div>
+                            <div class="option-item" data-part="eyes" data-value="eyes2.png">
+                                <img src="{% static 'images/eyes2.png' %}" alt="Глаза 2">
+                                <span>Глаза 2</span>
+                            </div>
+                            <div class="option-item" data-part="eyes" data-value="eyes3.png">
+                                <img src="{% static 'images/eyes3.png' %}" alt="Глаза 3">
+                                <span>Глаза 3</span>
+                            </div>
+                            <div class="option-item" data-part="eyes" data-value="eyes4.png">
+                                <img src="{% static 'images/eyes4.png' %}" alt="Глаза 4">
+                                <span>Глаза 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="mouth" style="display: none;">
+                        <p>Выберите форму рта:</p>
+                        <div class="options-list">
+                            <div class="option-item" data-part="mouth" data-value="mouth1.png">
+                                <img src="{% static 'images/mouth1.png' %}" alt="Рот 1">
+                                <span>Рот 1</span>
+                            </div>
+                            <div class="option-item" data-part="mouth" data-value="mouth2.png">
+                                <img src="{% static 'images/mouth2.png' %}" alt="Рот 2">
+                                <span>Рот 2</span>
+                            </div>
+                            <div class="option-item" data-part="mouth" data-value="mouth3.png">
+                                <img src="{% static 'images/mouth3.png' %}" alt="Рот 3">
+                                <span>Рот 3</span>
+                            </div>
+                            <div class="option-item" data-part="mouth" data-value="mouth4.png">
+                                <img src="{% static 'images/mouth4.png' %}" alt="Рот 4">
+                                <span>Рот 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="body" style="display: none;">
+                        <p>Выберите одежду для тела:</p>
+                        <div class="options-list">
+                            <div class="option-item" data-part="body" data-value="body1.png">
+                                <img src="{% static 'images/body1.png' %}" alt="Тело 1">
+                                <span>Тело 1</span>
+                            </div>
+                            <div class="option-item" data-part="body" data-value="body2.png">
+                                <img src="{% static 'images/body2.png' %}" alt="Тело 2">
+                                <span>Тело 2</span>
+                            </div>
+                            <div class="option-item" data-part="body" data-value="body3.png">
+                                <img src="{% static 'images/body3.png' %}" alt="Тело 3">
+                                <span>Тело 3</span>
+                            </div>
+                            <div class="option-item" data-part="body" data-value="body4.png">
+                                <img src="{% static 'images/body4.png' %}" alt="Тело 4">
+                                <span>Тело 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="legs" style="display: none;">
+                        <p>Выберите штаны:</p>
+                        <div class="options-list">
+                            <div class="option-item" data-part="legs" data-value="legs1.png">
+                                <img src="{% static 'images/legs1.png' %}" alt="Ноги 1">
+                                <span>Ноги 1</span>
+                            </div>
+                            <div class="option-item" data-part="legs" data-value="legs2.png">
+                                <img src="{% static 'images/legs2.png' %}" alt="Ноги 2">
+                                <span>Ноги 2</span>
+                            </div>
+                            <div class="option-item" data-part="legs" data-value="legs3.png">
+                                <img src="{% static 'images/legs3.png' %}" alt="Ноги 3">
+                                <span>Ноги 3</span>
+                            </div>
+                            <div class="option-item" data-part="legs" data-value="legs4.png">
+                                <img src="{% static 'images/legs4.png' %}" alt="Ноги 4">
+                                <span>Ноги 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="shoes" style="display: none;">
+                        <p>Выберите обувь:</p>
+                        <div class="options-list">
+                            <div class="option-item" data-part="shoes" data-value="shoes1.png">
+                                <img src="{% static 'images/shoes1.png' %}" alt="Обувь 1">
+                                <span>Обувь 1</span>
+                            </div>
+                            <div class="option-item" data-part="shoes" data-value="shoes2.png">
+                                <img src="{% static 'images/shoes2.png' %}" alt="Обувь 2">
+                                <span>Обувь 2</span>
+                            </div>
+                            <div class="option-item" data-part="shoes" data-value="shoes3.png">
+                                <img src="{% static 'images/shoes3.png' %}" alt="Обувь 3">
+                                <span>Обувь 3</span>
+                            </div>
+                            <div class="option-item" data-part="shoes" data-value="shoes4.png">
+                                <img src="{% static 'images/shoes4.png' %}" alt="Обувь 4">
+                                <span>Обувь 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Кнопка "Случайно" -->
+                    <button type="button" id="randomize-button" class="randomize-button">Случайно</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="char-last-name">Фамилия:</label>
-                <input type="text" id="char-last-name" name="char-last-name" required placeholder="Введите фамилию">
-            </div>
-            <!-- Выбор пола -->
-            <div class="form-group">
-                <label for="char-gender">Пол:</label>
-                <select id="char-gender" name="char-gender" required>
-                    <option value="male">Мужской</option>
-                    <option value="female">Женский</option>
-                </select>
-            </div>
-            <!-- Вкладки для настройки внешности -->
-            <div class="tabs">
-                <button type="button" class="tab-button active" data-tab="hair">Волосы</button>
-                <button type="button" class="tab-button" data-tab="eyes">Глаза</button>
-                <button type="button" class="tab-button" data-tab="mouth">Рот</button>
-                <button type="button" class="tab-button" data-tab="body">Тело</button>
-                <button type="button" class="tab-button" data-tab="legs">Ноги</button>
-                <button type="button" class="tab-button" data-tab="shoes">Обувь</button>
-            </div>
-            <!-- Контент вкладок -->
-            <div class="tab-content" id="hair">
-                <p>Выберите стиль волос:</p>
-                <button type="button" class="option-button" data-part="hair" data-value="◉">◉</button>
-                <button type="button" class="option-button" data-part="hair" data-value="⚫">⚫</button>
-            </div>
-            <div class="tab-content" id="eyes" style="display: none;">
-                <p>Выберите цвет глаз:</p>
-                <button type="button" class="option-button" data-part="eyes" data-value="◐">◐</button>
-                <button type="button" class="option-button" data-part="eyes" data-value="◑">◑</button>
-            </div>
-            <div class="tab-content" id="mouth" style="display: none;">
-                <p>Выберите форму рта:</p>
-                <button type="button" class="option-button" data-part="mouth" data-value="◡">◡</button>
-                <button type="button" class="option-button" data-part="mouth" data-value="◠">◠</button>
-            </div>
-            <div class="tab-content" id="body" style="display: none;">
-                <p>Выберите одежду для тела:</p>
-                <button type="button" class="option-button" data-part="body" data-value="▲">▲</button>
-                <button type="button" class="option-button" data-part="body" data-value="△">△</button>
-            </div>
-            <div class="tab-content" id="legs" style="display: none;">
-                <p>Выберите штаны:</p>
-                <button type="button" class="option-button" data-part="legs" data-value="■">■</button>
-                <button type="button" class="option-button" data-part="legs" data-value="□">□</button>
-            </div>
-            <div class="tab-content" id="shoes" style="display: none;">
-                <p>Выберите обувь:</p>
-                <button type="button" class="option-button" data-part="shoes" data-value="▼">▼</button>
-                <button type="button" class="option-button" data-part="shoes" data-value="▽">▽</button>
-            </div>
-            <!-- Кнопка "Случайно" -->
-            <button type="button" id="randomize-button" class="randomize-button">Случайно</button>
-        </form>
-    </div>
-    <!-- Правая панель: Отображение персонажа -->
-    <div class="character-preview">
-        <div class="character">
-            <!-- Фигуры для персонажа с символами -->
-            <div class="hair">
-                <span id="hair-symbol">◉</span>
-            </div>
-            <div class="head">
-                <span id="head-symbol">◉</span>
-            </div>
-            <div class="eyes">
-                <span id="eyes-symbol">◐</span>
-            </div>
-            <div class="mouth">
-                <span id="mouth-symbol">◡</span>
-            </div>
-            <div class="body">
-                <span id="body-symbol">▲</span>
-            </div>
-            <div class="legs">
-                <span id="legs-symbol">■</span>
-            </div>
-            <div class="shoes">
-                <span id="shoes-symbol">▼</span>
+            <!-- Правая панель: Отображение персонажа -->
+            <div class="character-preview">
+                <div class="character">
+                    <!-- Фигуры для персонажа с изображениями -->
+                    <div class="hair">
+                        <img id="hair-symbol" src="{% static 'images/hair1.png' %}" alt="Волосы">
+                    </div>
+                    <div class="eyes">
+                        <img id="eyes-symbol" src="{% static 'images/eyes1.png' %}" alt="Глаза">
+                    </div>
+                    <div class="mouth">
+                        <img id="mouth-symbol" src="{% static 'images/mouth1.png' %}" alt="Рот">
+                    </div>
+                    <div class="body">
+                        <img id="body-symbol" src="{% static 'images/body1.png' %}" alt="Тело">
+                    </div>
+                    <div class="legs">
+                        <img id="legs-symbol" src="{% static 'images/legs1.png' %}" alt="Ноги">
+                    </div>
+                    <div class="shoes">
+                        <img id="shoes-symbol" src="{% static 'images/shoes1.png' %}" alt="Обувь">
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- Кнопка "Готово" -->
+        <button id="done-button" class="done-button">Готово</button>
     </div>
 </div>
+<!-- Контейнер для частиц -->
+<div class="particles-container"></div>
 <script src="{% static 'scripts/charcreate.js' %}"></script>
 </body>
 </html>

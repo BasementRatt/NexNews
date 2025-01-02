@@ -1,103 +1,131 @@
+/* Шрифт BOX */
+@font-face {
+    font-family: 'BOX';
+    src: url('../fonts/Faberge.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Базовые стили для страницы создания персонажа */
 body {
-    background: #1e1e1e; /* Темный фон */
-    color: #ffffff; /* Белый текст */
-    font-family: 'BOX', sans-serif; /* Шрифт как на главной странице */
+    background: url('../img/background/fantasy.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #e0e0e0; /* Светлый текст */
+    font-family: 'BOX', cursive; /* Шрифт в стиле фэнтези */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden; /* Скрываем скролл при анимации */
+}
+
+/* Обертка для свитка */
+.scroll-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8); /* Темный фон для эффекта */
+    animation: scrollUnroll 2s ease-in-out forwards; /* Анимация разворачивания */
+}
+
+/* Контент свитка */
+.scroll-content {
+    width: 90%;
+    max-width: 1200px;
+    background: #1e1e1e; /* Темный контейнер */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: scaleY(0); /* Начальное состояние (свернуто) */
+    transform-origin: top;
+    animation: contentAppear 1.5s ease-in-out forwards; /* Анимация появления контента */
+    animation-delay: 1s; /* Задержка для синхронизации с разворачиванием */
+}
+
+/* Анимация разворачивания свитка */
+@keyframes scrollUnroll {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+/* Анимация появления контента */
+@keyframes contentAppear {
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }
 
 .charcreate-container {
     display: flex;
-    width: 90%;
-    max-width: 1200px;
-    background: #2c2c2c; /* Темный контейнер */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    flex-direction: column; /* Мобильная версия: вертикальное расположение */
+    width: 100%;
 }
 
 .creation-panel {
-    width: 40%;
-    padding-right: 20px;
-    border-right: 2px solid #444444;
+    width: 100%; /* Мобильная версия: занимает всю ширину */
+    padding-right: 0; /* Убираем отступ */
+    border-right: none; /* Убираем границу */
+    margin-bottom: 20px; /* Отступ между панелями */
 }
 
 .character-preview {
-    width: 60%;
+    width: 100%; /* Мобильная версия: занимает всю ширину */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .character {
-    width: 200px;
-    height: 400px;
+    width: 150px; /* Уменьшаем размер для мобильных устройств */
+    height: 300px; /* Уменьшаем размер для мобильных устройств */
     position: relative;
 }
 
-.hair, .head, .eyes, .mouth, .body, .legs, .shoes {
+.hair, .eyes, .mouth, .body, .legs, .shoes {
     position: absolute;
-    background: #555555; /* Серый цвет для фигур */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    color: #ffffff;
 }
 
 .hair {
-    width: 100px;
-    height: 30px;
-    top: -30px; /* Волосы выше головы */
-    left: 50px;
-    border-radius: 50% 50% 0 0;
-}
-
-.head {
-    width: 100px;
-    height: 100px;
     top: 0;
-    left: 50px;
-    border-radius: 50%;
+    left: 25px; /* Корректируем позицию для мобильных устройств */
 }
 
 .eyes {
-    width: 50px;
-    height: 20px;
-    top: 40px;
-    left: 75px;
+    top: 30px; /* Корректируем позицию для мобильных устройств */
+    left: 50px; /* Корректируем позицию для мобильных устройств */
 }
 
 .mouth {
-    width: 50px;
-    height: 20px;
-    top: 70px;
-    left: 75px;
+    top: 60px; /* Корректируем позицию для мобильных устройств */
+    left: 50px; /* Корректируем позицию для мобильных устройств */
 }
 
 .body {
-    width: 120px;
-    height: 150px;
-    top: 100px;
-    left: 40px;
+    top: 90px; /* Корректируем позицию для мобильных устройств */
+    left: 30px; /* Корректируем позицию для мобильных устройств */
 }
 
 .legs {
-    width: 80px;
-    height: 120px;
-    top: 250px;
-    left: 60px;
+    top: 200px; /* Корректируем позицию для мобильных устройств */
+    left: 40px; /* Корректируем позицию для мобильных устройств */
 }
 
 .shoes {
-    width: 100px;
-    height: 30px;
-    top: 370px;
-    left: 50px;
+    top: 280px; /* Корректируем позицию для мобильных устройств */
+    left: 30px; /* Корректируем позицию для мобильных устройств */
 }
 
 .form-group {
@@ -124,20 +152,22 @@ body {
     display: flex;
     gap: 10px;
     margin-bottom: 15px;
+    flex-wrap: wrap; /* Перенос вкладок на новую строку на мобильных устройствах */
 }
 
 .tab-button {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
+    background-color: #8B4513; /* Коричневый цвет */
     color: white;
     cursor: pointer;
     font-size: 14px;
+    flex: 1 1 45%; /* Равномерное распределение на мобильных устройствах */
 }
 
 .tab-button.active {
-    background-color: #45a049;
+    background-color: #A0522D; /* Темно-коричневый при активации */
 }
 
 .tab-content {
@@ -149,19 +179,37 @@ body {
     display: block;
 }
 
-.option-button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3a3a3a;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 5px;
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.option-button:hover {
+.option-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #444444;
+    border-radius: 5px;
+    background-color: #3a3a3a;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.option-item:hover {
     background-color: #4CAF50;
+}
+
+.option-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.option-item span {
+    font-size: 14px;
+    color: #ffffff;
 }
 
 .randomize-button {
@@ -178,4 +226,116 @@ body {
 
 .randomize-button:hover {
     background-color: #FFD600;
+}
+
+/* Кнопка "Готово" */
+.done-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8B4513; /* Коричневый цвет */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.done-button:hover {
+    background-color: #A0522D; /* Темно-коричневый при наведении */
+}
+
+/* Контейнер для частиц */
+.particles-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Чтобы частицы не мешали взаимодействию */
+    overflow: hidden;
+    z-index: 1; /* Частицы под основным контентом */
+}
+
+/* Стили для частиц */
+.particle {
+    position: absolute;
+    bottom: 0;
+    width: 5px;
+    height: 5px;
+    background-color: #FFA500; /* Оранжевый цвет, как у огня */
+    border-radius: 50%;
+    opacity: 0;
+    animation: rise 3s infinite ease-in;
+}
+
+/* Анимация для частиц */
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Медиазапросы для адаптации */
+@media (min-width: 768px) {
+    .charcreate-container {
+        flex-direction: row; /* Десктоп: горизонтальное расположение */
+    }
+
+    .creation-panel {
+        width: 40%; /* Десктоп: фиксированная ширина */
+        padding-right: 20px;
+        border-right: 2px solid #444444;
+        margin-bottom: 0;
+    }
+
+    .character-preview {
+        width: 60%; /* Десктоп: фиксированная ширина */
+    }
+
+    .character {
+        width: 200px; /* Десктоп: стандартный размер */
+        height: 400px; /* Десктоп: стандартный размер */
+    }
+
+    .hair {
+        top: 0;
+        left: 50px; /* Десктоп: стандартная позиция */
+    }
+
+    .eyes {
+        top: 40px; /* Десктоп: стандартная позиция */
+        left: 75px; /* Десктоп: стандартная позиция */
+    }
+
+    .mouth {
+        top: 70px; /* Десктоп: стандартная позиция */
+        left: 75px; /* Десктоп: стандартная позиция */
+    }
+
+    .body {
+        top: 100px; /* Десктоп: стандартная позиция */
+        left: 40px; /* Десктоп: стандартная позиция */
+    }
+
+    .legs {
+        top: 250px; /* Десктоп: стандартная позиция */
+        left: 60px; /* Десктоп: стандартная позиция */
+    }
+
+    .shoes {
+        top: 370px; /* Десктоп: стандартная позиция */
+        left: 50px; /* Десктоп: стандартная позиция */
+    }
+
+    .tab-button {
+        flex: none; /* Десктоп: отключаем гибкость */
+    }
 }
